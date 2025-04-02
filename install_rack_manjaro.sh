@@ -3,6 +3,7 @@
 rackVersion=2.6.3
 rackFolder=rack2
 SUDO=''
+originalFolder=$(pwd)
 
 echo "VCV Rack ${rackVersion} installer for Manjaro Copyright (C) 2025"
 echo "Bloodbat / La Serpiente y la Rosa Producciones."
@@ -111,3 +112,4 @@ echo "'cd ${HOME}/Rack2Free' Enter"
 echo "'./Rack' Enter"
 echo
 echo "Bye now!"
+cd ${originalFolder}
