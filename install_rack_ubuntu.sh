@@ -3,7 +3,6 @@
 # Script version: 1.0
 
 rackVersion=2.6.3
-rackFolder=rack2
 SUDO=''
 originalFolder=$(pwd)
 
