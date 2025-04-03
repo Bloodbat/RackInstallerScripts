@@ -26,7 +26,7 @@ dpkg -s wget &> /dev/null
 if [ $? != 0 ]; then
   echo
   echo "Installing wget..."
-  sudo sudo apt -y install wget
+  $SUDO apt -y install wget
 
   if [ $? != 0 ]; then
     echo
@@ -41,7 +41,7 @@ dpkg -s unzip &> /dev/null
 if [ $? != 0 ]; then
   echo
   echo "Installing unzip..."
-  sudo sudo apt -y install unzip
+  $SUDO apt -y install unzip
 
   if [ $? != 0 ]; then
     echo
@@ -56,7 +56,7 @@ dpkg -s zenity &> /dev/null
 if [ $? != 0 ]; then
   echo
   echo "Installing zenity..."
-  sudo sudo apt -y install zenity
+  $SUDO apt -y install zenity
 
   if [ $? != 0 ]; then
     echo
@@ -72,7 +72,7 @@ dpkg -s libjack0 &> /dev/null
 if [ $? != 0 ]; then
   echo
   echo Installing libjack0...
-  sudo sudo apt -y install libjack0
+  $SUDO apt -y install libjack0
 
   if [ $? != 0 ]; then
     echo

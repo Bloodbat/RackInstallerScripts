@@ -26,7 +26,7 @@ pacman -Q wget &> /dev/null
 if [ $? != 0 ]; then
   echo
   echo "Installing wget..."
-  sudo pacman -S -q --noconfirm wget
+  $SUDO pacman -S -q --noconfirm wget
 
   if [ $? != 0 ]; then
     echo
@@ -41,7 +41,7 @@ pacman -Q unzip &> /dev/null
 if [ $? != 0 ]; then
   echo
   echo "Installing unzip..."
-  sudo pacman -S -q --noconfirm unzip
+  $SUDO pacman -S -q --noconfirm unzip
 
   if [ $? != 0 ]; then
     echo
@@ -56,7 +56,7 @@ pacman -Q zenity &> /dev/null
 if [ $? != 0 ]; then
   echo
   echo "Installing zenity..."
-  sudo pacman -S -q --noconfirm zenity
+  $SUDO pacman -S -q --noconfirm zenity
 
   if [ $? != 0 ]; then
     echo
@@ -72,7 +72,7 @@ pacman -Q jack2 &> /dev/null
 if [ $? != 0 ]; then
   echo
   echo Installing jack2...
-  sudo pacman -S -q --noconfirm jack2
+  $SUDO pacman -S -q --noconfirm jack2
 
   if [ $? != 0 ]; then
     echo

@@ -22,14 +22,14 @@ fi
 echo Installing initial prerequisites...
 
 # Ensure we can list the packages: this system is not at all smart.
-sudo dnf list --extras &> /dev/null
+$SUDO dnf list --extras &> /dev/null
 
-sudo dnf list installed wget2 &> /dev/null
+$SUDO dnf list installed wget2 &> /dev/null
 
 if [ $? != 0 ]; then
   echo
   echo "Installing wget2..."
-  sudo dnf install wget2
+  $SUDO dnf install wget2
 
   if [ $? != 0 ]; then
     echo
@@ -39,12 +39,12 @@ if [ $? != 0 ]; then
   fi
 fi
 
-sudo dnf list installed unzip &> /dev/null
+$SUDO dnf list installed unzip &> /dev/null
 
 if [ $? != 0 ]; then
   echo
   echo "Installing unzip..."
-  sudo dnf install unzip
+  $SUDO dnf install unzip
 
   if [ $? != 0 ]; then
     echo
@@ -54,12 +54,12 @@ if [ $? != 0 ]; then
   fi
 fi
 
-sudo dnf list installed zenity &> /dev/null
+$SUDO dnf list installed zenity &> /dev/null
 
 if [ $? != 0 ]; then
   echo
   echo "Installing zenity..."
-  sudo dnf install zenity
+  $SUDO dnf install zenity
 
   if [ $? != 0 ]; then
     echo
@@ -70,12 +70,12 @@ if [ $? != 0 ]; then
 fi
 
 # Check for Jack-audio-connection-kit
-sudo dnf list installed jack-audio-connection-kit &> /dev/null
+$SUDO dnf list installed jack-audio-connection-kit &> /dev/null
 
 if [ $? != 0 ]; then
   echo
   echo Installing jack-audio-connection-kit...
-  sudo dnf install jack-audio-connection-kit
+  $SUDO dnf install jack-audio-connection-kit
 
   if [ $? != 0 ]; then
     echo
