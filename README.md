@@ -60,15 +60,19 @@ If it doesn't work, contributions for new distro scripts are welcome!
 
 You have a several options here.
 
-Two common ones:
+Three common ones:
 
 - Using your browser
 
-  - Click on the appropriate script for your distribution.
+  - Download the .zip or tar.gz file named "Source code" from the releases page in this repository and decompress it. This will net you all the scripts, so just use the appropriate one.
 
-  - Click "Raw".
+  - You can download it directly as well:
 
-  - Save the script.
+    - Click on the appropriate script for your distribution.
+
+    - Click "Raw".
+
+    - Save the script.
   
 - Download it using wget or wget2:
 
