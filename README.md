@@ -17,6 +17,13 @@ The scripts do nothing fancy: they will not install graphical Jack connection ma
 
 Get the installer script for your preferred distro, put it in your home directory and run it from the terminal command line.
 
+| Script                  | System        |
+| ----------------------- | ------------- |
+| install_rack_manjaro.sh | Manjaro Linux |
+| install_rack_ubuntu.sh  | Ubuntu        |
+| install_rack_mint.sh    | Linux Mint    |
+| install_rack_fedora.sh  | Fedora        |
+
 For example:
 
 To use the Manjaro script, download it; put it in your home directory; open a terminal and run:
