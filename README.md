@@ -13,16 +13,16 @@ The scripts do nothing fancy: they will not install graphical Jack connection ma
 
 ---
 
-# Using
+## Using the scripts
 
 Get the installer script for your preferred distro, put it in your home directory and run it from the terminal command line.
 
-| Script                  | System        |
-| ----------------------- | ------------- |
-| install_rack_manjaro.sh | Manjaro Linux |
-| install_rack_ubuntu.sh  | Ubuntu        |
-| install_rack_mint.sh    | Linux Mint    |
-| install_rack_fedora.sh  | Fedora        |
+| Script name             | Target Distribution |
+| ----------------------- | ------------------- |
+| install_rack_manjaro.sh | Manjaro Linux       |
+| install_rack_ubuntu.sh  | Ubuntu              |
+| install_rack_mint.sh    | Linux Mint          |
+| install_rack_fedora.sh  | Fedora              |
 
 For example:
 
@@ -36,7 +36,7 @@ Usage for other distros is similar: just pick the right script.
 
 ---
 
-# Requirements
+## Requirements
 
 The scripts require:
 
@@ -48,8 +48,49 @@ The scripts require:
 
 ---
 
-# My favorite distro is not listed!
+## My favorite distro is not listed!
 
 You can try using one of the available scripts that corresponds to the packaging system a particular distro uses, for example, the Ubuntu script might be compatible with Debian.
 
 If it doesn't work, contributions for new distro scripts are welcome!
+
+---
+
+## Help! I can't download scripts!
+
+You have a several options here.
+
+Two common ones:
+
+- Using your browser
+
+  - Click on the appropriate script for your distribution.
+
+  - Click "Raw".
+
+  - Save the script.
+  
+- Download it using wget or wget2:
+
+  - Type
+  
+    ```
+    wget https://raw.githubusercontent.com/Bloodbat/RackInstallerScripts/refs/heads/main/install_rack_<yourdistro>.sh
+    ```
+
+    Substitute \<yourdistro\> using the table above.
+
+    then press "Enter".
+
+    Make sure you set the script to be executable after downloading!
+
+## How do I make the script executable?
+## Help! I can't run the script!
+
+Run
+
+```
+chmod +x \<scriptname\>.sh
+```
+
+Where \<scriptname\> is your selected script.
