@@ -1,5 +1,5 @@
 # Rack Installer Scripts
-Installer scripts for easily installing VCV Rack and its dependencies for different Linux distros.
+Installer scripts to easily install VCV Rack and its dependencies for different Linux distros.
 
 The script checks for dependencies; downloads and installs them, if they are not present, and, finally, downloads and decompresses Rack to its default directory: "Rack2Free" in the user's home directory.
 
