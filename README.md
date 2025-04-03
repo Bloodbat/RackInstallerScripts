@@ -56,7 +56,7 @@ If it doesn't work, contributions for new distro scripts are welcome!
 
 ---
 
-## Help! I can't download scripts!
+## Help! I can't download the scripts!
 
 You have a several options here.
 
