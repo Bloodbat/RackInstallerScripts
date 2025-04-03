@@ -90,7 +90,7 @@ Two common ones:
 Run
 
 ```
-chmod +x \<scriptname\>.sh
+chmod +x <scriptname>.sh
 ```
 
 Where \<scriptname\> is your selected script.
