@@ -67,7 +67,7 @@ if [ $? != 0 ]; then
   fi
 fi
 
-# Check for Jack
+# Check for libjack0
 dpkg -s libjack0 &> /dev/null
 
 if [ $? != 0 ]; then
