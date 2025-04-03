@@ -26,7 +26,7 @@ Get the installer script for your preferred distro, put it in your home director
 
 For example:
 
-To use the Manjaro script, download it; put it in your home directory; open a terminal and run:
+To use the Manjaro script, download it; put it in your home directory; open a terminal, and run:
 
 ```
 ./install_rack_manjaro.sh
