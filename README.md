@@ -87,10 +87,20 @@ Two common ones:
 ## How do I make the script executable?
 ## Help! I can't run the script!
 
-Run
+- Run
 
-```
-chmod +x <scriptname>.sh
-```
+  ```
+  chmod +x <scriptname>.sh
+  ```
 
-Where \<scriptname\> is your selected script.
+  Where \<scriptname\> is your selected script.
+
+## My distro is too old! The scripts are incompatible!
+
+- Several options:
+
+  - You could... update your distro.
+
+  - You can also adjust the script.
+
+    Make sure you share it with us using a suitable name such as "install_rack_fedora_old.sh" or somesuch.
