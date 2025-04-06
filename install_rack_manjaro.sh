@@ -1,10 +1,35 @@
 #!/usr/bin/env bash
 
-# Script version: 1.0
+# Script version: 2.0
 
 rackVersion=2.6.3
 SUDO=''
 originalFolder=$(pwd)
+
+# These setup the checker and installer commands for different distros.
+checkCommand="pacman -Q"
+installCommand="pacman -S -q --noconfirm"
+
+function printErrorAndExit() {
+  echo
+  echo "Unable to install "$1""
+  echo "Exiting now..."
+  exit 1
+}
+
+function checkAndInstall() {
+  ${checkCommand} "$1" &> /dev/null
+
+  if [ $? != 0 ]; then
+    echo
+    echo "Installing "$1"..."
+    $SUDO ${installCommand} "$1"
+
+    if [ $? != 0 ]; then
+      printErrorAndExit "$1"
+    fi
+  fi
+}
 
 echo "VCV Rack ${rackVersion} installer for Manjaro Copyright (C) 2025"
 echo "Bloodbat / La Serpiente y la Rosa Producciones."
@@ -21,66 +46,13 @@ fi
 
 echo Installing initial prerequisites...
 
-pacman -Q wget &> /dev/null
+checkAndInstall wget
 
-if [ $? != 0 ]; then
-  echo
-  echo "Installing wget..."
-  $SUDO pacman -S -q --noconfirm wget
+checkAndInstall unzip
 
-  if [ $? != 0 ]; then
-    echo
-    echo "Unable to install wget"
-    echo "Exiting now..."
-    exit 1
-  fi
-fi
+checkAndInstall zenity
 
-pacman -Q unzip &> /dev/null
-
-if [ $? != 0 ]; then
-  echo
-  echo "Installing unzip..."
-  $SUDO pacman -S -q --noconfirm unzip
-
-  if [ $? != 0 ]; then
-    echo
-    echo "Unable to install unzip"
-    echo "Exiting now..."
-    exit 1
-  fi
-fi
-
-pacman -Q zenity &> /dev/null
-
-if [ $? != 0 ]; then
-  echo
-  echo "Installing zenity..."
-  $SUDO pacman -S -q --noconfirm zenity
-
-  if [ $? != 0 ]; then
-    echo
-    echo "Unable to install zenity"
-    echo "Exiting now..."
-    exit 1
-  fi
-fi
-
-# Check for Jack
-pacman -Q jack2 &> /dev/null
-
-if [ $? != 0 ]; then
-  echo
-  echo Installing jack2...
-  $SUDO pacman -S -q --noconfirm jack2
-
-  if [ $? != 0 ]; then
-    echo
-    echo "Unable to install jack2"
-    echo "Exiting now..."
-    exit 1
-  fi
-fi
+checkAndInstall jack2
 
 echo "Getting VCV Rack ${rackVersion}..."
 wget https://vcvrack.com/downloads/RackFree-${rackVersion}-lin-x64.zip &> /dev/null

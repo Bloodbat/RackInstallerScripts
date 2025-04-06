@@ -1,10 +1,35 @@
 #!/usr/bin/env bash
 
-# Script version: 1.0
+# Script version: 2.0
 
 rackVersion=2.6.3
 SUDO=''
 originalFolder=$(pwd)
+
+# These setup the checker and installer commands for different distros.
+checkCommand="dnf list installed"
+installCommand="dnf install"
+
+function printErrorAndExit() {
+  echo
+  echo "Unable to install "$1""
+  echo "Exiting now..."
+  exit 1
+}
+
+function checkAndInstall() {
+  ${checkCommand} "$1" &> /dev/null
+
+  if [ $? != 0 ]; then
+    echo
+    echo "Installing "$1"..."
+    $SUDO ${installCommand} "$1"
+
+    if [ $? != 0 ]; then
+      printErrorAndExit "$1"
+    fi
+  fi
+}
 
 echo "VCV Rack ${rackVersion} installer for Fedora Copyright (C) 2025"
 echo "Bloodbat / La Serpiente y la Rosa Producciones."
@@ -24,66 +49,13 @@ echo Installing initial prerequisites...
 # Ensure we can list the packages: this system is not at all smart.
 $SUDO dnf list --extras &> /dev/null
 
-$SUDO dnf list installed wget2 &> /dev/null
+checkAndInstall wget2
 
-if [ $? != 0 ]; then
-  echo
-  echo "Installing wget2..."
-  $SUDO dnf install wget2
+checkAndInstall unzip
 
-  if [ $? != 0 ]; then
-    echo
-    echo "Unable to install wget2"
-    echo "Exiting now..."
-    exit 1
-  fi
-fi
+checkAndInstall zenity
 
-$SUDO dnf list installed unzip &> /dev/null
-
-if [ $? != 0 ]; then
-  echo
-  echo "Installing unzip..."
-  $SUDO dnf install unzip
-
-  if [ $? != 0 ]; then
-    echo
-    echo "Unable to install unzip"
-    echo "Exiting now..."
-    exit 1
-  fi
-fi
-
-$SUDO dnf list installed zenity &> /dev/null
-
-if [ $? != 0 ]; then
-  echo
-  echo "Installing zenity..."
-  $SUDO dnf install zenity
-
-  if [ $? != 0 ]; then
-    echo
-    echo "Unable to install zenity"
-    echo "Exiting now..."
-    exit 1
-  fi
-fi
-
-# Check for Jack-audio-connection-kit
-$SUDO dnf list installed jack-audio-connection-kit &> /dev/null
-
-if [ $? != 0 ]; then
-  echo
-  echo Installing jack-audio-connection-kit...
-  $SUDO dnf install jack-audio-connection-kit
-
-  if [ $? != 0 ]; then
-    echo
-    echo "Unable to install jack-audio-connection-kit"
-    echo "Exiting now..."
-    exit 1
-  fi
-fi
+checkAndInstall jack-audio-connection-kit
 
 echo "Getting VCV Rack ${rackVersion}..."
 wget2 https://vcvrack.com/downloads/RackFree-${rackVersion}-lin-x64.zip &> /dev/null
