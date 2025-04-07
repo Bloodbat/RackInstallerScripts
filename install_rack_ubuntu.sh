@@ -52,7 +52,12 @@ checkAndInstall unzip
 
 checkAndInstall zenity
 
-checkAndInstall libjack0
+# Don't overwrite jack in certain Ubuntu versions.
+${checkCommand} libjack-jackd2-0 &> /dev/null
+if [ $? != 0 ]; then
+  checkAndInstall libjack0
+fi
+
 
 echo "Getting VCV Rack ${rackVersion}..."
 wget https://vcvrack.com/downloads/RackFree-${rackVersion}-lin-x64.zip &> /dev/null
