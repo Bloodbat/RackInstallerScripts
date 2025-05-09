@@ -1,7 +1,7 @@
 # Rack Installer Scripts
-Installer scripts to easily install VCV Rack and its dependencies for different Linux distros.
+Scripts to easily install VCV Rack and its dependencies for a few different Linux distros.
 
-The script checks for dependencies; downloads and installs them, if they are not present, and, finally, downloads and decompresses Rack to its default directory: "Rack2Free" in the user's home directory.
+The scripts check for dependencies; download and install them, if they are not present, and, finally, download and decompresses Rack to its default directory: "Rack2Free" in the user's home directory.
 
 For example, if the current user is "myuser", Rack will be installed in 
 
@@ -17,12 +17,12 @@ The scripts do nothing fancy: they will not install graphical Jack connection ma
 
 Get the installer script for your preferred distro, put it in your home directory and run it from the terminal command line.
 
-| Script name             | Target Distribution |
-| ----------------------- | ------------------- |
-| install_rack_manjaro.sh | Manjaro Linux       |
-| install_rack_ubuntu.sh  | Ubuntu              |
-| install_rack_mint.sh    | Linux Mint          |
-| install_rack_fedora.sh  | Fedora              |
+| Script name             | Target Distribution | Package Manager |
+| ----------------------- | ------------------- | --------------- |
+| install_rack_manjaro.sh | Manjaro Linux       | pacman          |
+| install_rack_ubuntu.sh  | Ubuntu              | apt             |
+| install_rack_mint.sh    | Linux Mint          | apt             |
+| install_rack_fedora.sh  | Fedora              | dnf             |
 
 For example:
 
@@ -46,13 +46,17 @@ The scripts require:
 
 - A user account capable of using sudo.
 
+- A little comfort using the terminal.
+
 ---
+
+# FAQ
 
 ## My favorite distro is not listed!
 
-You can try using one of the available scripts that corresponds to the packaging system a particular distro uses, for example, the Ubuntu script might be compatible with Debian.
+You can try using one of the available scripts that corresponds to the packaging system a particular distro uses, for example, the Ubuntu script might be compatible with Debian; check the table above to find out which package manager each script uses.
 
-If it doesn't work, contributions for new distro scripts are welcome!
+If none of the scripts work for your chosen distribution, contributions for new scripts are welcome!
 
 ---
 
@@ -64,9 +68,9 @@ Three common ones:
 
 - Using your browser
 
-  - Download the .zip or tar.gz file named "Source code" from the releases page in this repository and decompress it. This will net you all the scripts, so just use the appropriate one.
+  - Download the .zip or tar.gz file named "Source code" from the "Releases" page in this repository and decompress it. This will net you all the scripts, so just use the appropriate one.
 
-  - You can download it directly as well:
+  - You can download individual ones directly as well:
 
     - Click on the appropriate script for your distribution.
 
@@ -78,17 +82,17 @@ Three common ones:
 
   - Type
   
-    ```
-    wget https://raw.githubusercontent.com/Bloodbat/RackInstallerScripts/refs/heads/main/install_rack_<yourdistro>.sh
-    ```
+  ```
+  wget https://raw.githubusercontent.com/Bloodbat/RackInstallerScripts/refs/heads/main/install_rack_<yourdistro>.sh
+  ```
 
-    Substitute \<yourdistro\> using the table above.
+  - Substitute the \<yourdistro\> part for the distro you are using after consulting the the table above.
 
-    then press "Enter".
+  - Press "Enter".
 
-    Make sure you set the script to be executable after downloading!
+  - Make sure you set the script to be executable after downloading!
 
-## How do I make the script executable?
+## How do I make a script executable?
 ## Help! I can't run the script!
 
 - Run
@@ -107,4 +111,4 @@ Three common ones:
 
   - You can also adjust the script.
 
-    Make sure you share it with us using a suitable name such as "install_rack_fedora_old.sh" or somesuch.
+    If you take this route, make sure you share it with us using a suitable name such as "install_rack_fedora_old.sh" or somesuch.
