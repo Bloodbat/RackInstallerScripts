@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Script version: 2.0
+# Script version: 2.1
 
 rackVersion=2.6.3
 SUDO=''
@@ -30,6 +30,15 @@ function checkAndInstall() {
     fi
   fi
 }
+
+while getopts ':v:' opt
+do
+  case $opt in
+    v) rackVersion=$OPTARG;;
+    \?) echo "ERROR: Invalid option"
+    exit 1;;
+  esac
+done
 
 echo "VCV Rack ${rackVersion} installer for Linux Mint Copyright (C) 2025"
 echo "Bloodbat / La Serpiente y la Rosa Producciones."
