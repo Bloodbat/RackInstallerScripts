@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Script version: 2.1
+# Script version: 2.2
 
 rackVersion=2.6.3
 SUDO=''
