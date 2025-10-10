@@ -39,7 +39,7 @@ do
   esac
 done
 
-echo "VCV Rack Free installer for Fedora Copyright (C) 2025"
+echo "VCV Rack Free installer for Fedora Linux Copyright (C) 2025"
 echo "Bloodbat / La Serpiente y la Rosa Producciones."
 echo "This program comes with ABSOLUTELY NO WARRANTY."
 echo "This is free software, and you are welcome to redistribute it."
