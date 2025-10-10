@@ -11,6 +11,8 @@ For example, if the current user is "myuser", Rack will be installed in
 
 The scripts do nothing fancy: they will not install graphical Jack connection managers or install and enable Pipewire Jack: those are exercises left to the user.
 
+These scripts install **VCV Rack version 2.6.3**.
+
 ---
 
 ## Using the scripts
