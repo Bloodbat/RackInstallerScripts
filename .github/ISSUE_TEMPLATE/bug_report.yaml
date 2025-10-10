@@ -1,0 +1,59 @@
+name: Rack Installer Scripts Bug report
+description: Create a report to help us improve.
+title: "[BUG] <title>"
+labels: ["bug", "needs triage"]
+
+body:
+  - type: textarea
+    attributes:
+      label: Required information
+      description: |
+        examples:
+          - Linux distribution: Linux Mint
+          - Distribution version: 22.1
+      value: |
+        - Linux distribution:
+        - Distribution version:
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Bug description
+      description: Describe the bug in a clear and concise manner.
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the problem.
+      placeholder: |
+        1. Open '...'
+        2. Execute '....'
+        ...
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Anything else?
+      description: |
+        Links? References? Anything that will give us more context about the issue you are encountering!
+
+        Console output is really helpful here!
+
+        Tip: You can attach images or text files by clicking this area to highlight it and then dragging files to it.
+    validations:
+      required: false
