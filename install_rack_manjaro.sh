@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-# Script version: 2.2
-
 rackVersion=2.6.3
+scriptVersion=2.2
 SUDO=''
 originalFolder=$(pwd)
 
@@ -40,10 +39,14 @@ do
   esac
 done
 
-echo "VCV Rack Free ${rackVersion} installer for Manjaro Copyright (C) 2025"
+echo "VCV Rack Free installer for Manjaro Copyright (C) 2025"
 echo "Bloodbat / La Serpiente y la Rosa Producciones."
 echo "This program comes with ABSOLUTELY NO WARRANTY."
 echo "This is free software, and you are welcome to redistribute it."
+echo
+echo "Script version ${scriptVersion}"
+echo
+echo "Trying to install VCV Rack Free ${rackVersion}..."
 echo
 
 cd ~
