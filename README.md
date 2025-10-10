@@ -1,7 +1,7 @@
-# Rack Installer Scripts
-Scripts to easily install VCV Rack and its dependencies for a few different Linux distros.
+# Rack Free Installer Scripts
+Scripts to easily install VCV Rack Free and its dependencies for a few different Linux distros.
 
-The scripts check for dependencies; download and install them, if they are not present, and, finally, download and decompresses Rack to its default directory: "Rack2Free" in the user's home directory.
+The scripts check for dependencies; download and install them, if they are not present, and, finally, download and decompresses Rack Free to its default directory: "Rack2Free" in the user's home directory.
 
 For example, if the current user is "myuser", Rack will be installed in
 
@@ -11,7 +11,9 @@ For example, if the current user is "myuser", Rack will be installed in
 
 The scripts do nothing fancy: they will not install graphical Jack connection managers or install and enable Pipewire Jack: those are exercises left to the user.
 
-These scripts install **VCV Rack version 2.6.3**.
+## These scripts install VCV Rack Free version 2.6.3 by default.
+
+### These scripts do not and cannot install the paid version of VCV Rack! If you need help installing that version, contact VCV Rack support!
 
 ---
 
@@ -105,7 +107,7 @@ Three common ones:
 
   Where \<scriptname\> is your selected script.
 
-## The default version of VCV Rack installed by the scripts is too old / too new!
+## The default version of VCV Rack Free installed by the scripts is too old / too new!
 
 The default version is selected using the wisdom of the community in the forum and our personal experience.
 
@@ -113,7 +115,7 @@ Versions passing both tests will be the default whenever the scripts are updated
 
 That said... if you want a different version, just pass it using the "-v" parameter sans the quotes.
 
-For example, to install VCV Rack version 2.6.4 using the Linux Mint installer script, type:
+For example, to install VCV Rack Free version 2.6.4 using the Linux Mint installer script, type:
 
 ```
 install_rack_mint.sh -v 2.6.4
@@ -121,7 +123,7 @@ install_rack_mint.sh -v 2.6.4
 
 and press ENTER.
 
-The scripts *do not* check for version correctness before trying to download a VCV Rack distribution, so... make sure you type an available version.
+The scripts *do not* check for version correctness before trying to download a VCV Rack Free distribution, so... make sure you type an available version.
 
 ## My distro is too old! The scripts are incompatible!
 

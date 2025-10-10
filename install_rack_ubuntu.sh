@@ -40,7 +40,7 @@ do
   esac
 done
 
-echo "VCV Rack ${rackVersion} installer for Ubuntu Copyright (C) 2025"
+echo "VCV Rack Free ${rackVersion} installer for Ubuntu Copyright (C) 2025"
 echo "Bloodbat / La Serpiente y la Rosa Producciones."
 echo "This program comes with ABSOLUTELY NO WARRANTY."
 echo "This is free software, and you are welcome to redistribute it."
@@ -68,22 +68,22 @@ if [ $? != 0 ]; then
 fi
 
 
-echo "Getting VCV Rack ${rackVersion}..."
+echo "Getting VCV Rack Free ${rackVersion}..."
 wget https://vcvrack.com/downloads/RackFree-${rackVersion}-lin-x64.zip &> /dev/null
 
 if [ $? != 0 ]; then
  echo
- echo "Unable to get VCV Rack ${rackVersion}"
+ echo "Unable to get VCV Rack Free ${rackVersion}"
  echo "Exiting now..."
  exit 1
 fi
 
-echo "Unzipping VCV Rack ${rackVersion} to Rack2Free"
+echo "Unzipping VCV Rack Free ${rackVersion} to Rack2Free"
 unzip -q RackFree-${rackVersion}-lin-x64.zip
 
 if [ $? != 0 ]; then
  echo
- echo "Unable to decompress VCV Rack ${rackVersion}"
+ echo "Unable to decompress VCV Rack Free ${rackVersion}"
  echo "Exiting now..."
  exit 1
 fi
@@ -94,7 +94,7 @@ rm RackFree-${rackVersion}-lin-x64.zip
 echo
 echo "Done! Enjoy your Rack!"
 echo
-echo "You can run VCV Rack ${rackVersion} from the command line by typing:"
+echo "You can run VCV Rack Free ${rackVersion} from the command line by typing:"
 echo "'cd ${HOME}/Rack2Free' Enter"
 echo "'./Rack' Enter"
 echo
