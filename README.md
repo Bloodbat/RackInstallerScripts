@@ -26,7 +26,7 @@ Get the installer script for your preferred distro, put it in your home director
 | install_rack_manjaro.sh | Manjaro Linux       | pacman          |
 | install_rack_ubuntu.sh  | Ubuntu              | apt             |
 | install_rack_mint.sh    | Linux Mint          | apt             |
-| install_rack_fedora.sh  | Fedora              | dnf             |
+| install_rack_fedora.sh  | Fedora Linux        | dnf             |
 
 For example:
 
