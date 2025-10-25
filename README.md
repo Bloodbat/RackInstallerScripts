@@ -44,6 +44,12 @@ The scripts include a help screen, to display it, run:
 <scriptname>.sh -h
 ```
 
+Installation of JACK can be skipped so that the scripts are more useful to more distributions and to avoid overwriting existing installations, run:
+
+```
+<scriptname>.sh -j
+```
+
 ---
 
 ## Requirements

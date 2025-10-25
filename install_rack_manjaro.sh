@@ -4,6 +4,7 @@ rackVersion=2.6.3
 scriptVersion=2.3
 SUDO=''
 originalFolder=$(pwd)
+wantJack=1
 
 # These setup the checker and installer commands for different distros.
 checkCommand="pacman -Q"
@@ -45,15 +46,17 @@ function printHelp() {
   echo "Usage: $0 [-v <version> | -h]"
   echo -e "\t-v <version> Try to install specific Rack free version."
   echo -e "\t-h           Show this help screen."
+  echo -e "\t-j           Skip installation of JACK."
   echo
   exit 2
 }
 
-while getopts ':v:h' opt
+while getopts ':v:hj' opt
 do
   case $opt in
     v) rackVersion=$OPTARG;;
     h) printHelp;;
+    j) wantJack=0;;
     \?) echo "ERROR: Invalid option"
     exit 1;;
   esac
@@ -78,7 +81,9 @@ checkAndInstall unzip
 
 checkAndInstall zenity
 
-checkAndInstall jack2
+if [ $wantJack != 0 ]; then
+  checkAndInstall jack2
+fi
 
 echo "Getting VCV Rack Free ${rackVersion}..."
 wget https://vcvrack.com/downloads/RackFree-${rackVersion}-lin-x64.zip &> /dev/null
