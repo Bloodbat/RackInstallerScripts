@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 rackVersion=2.6.3
-scriptVersion=2.2
+scriptVersion=2.3
 SUDO=''
 originalFolder=$(pwd)
 
@@ -30,22 +30,36 @@ function checkAndInstall() {
   fi
 }
 
-while getopts ':v:' opt
+function printHeader() {
+  echo "VCV Rack Free installer for Manjaro Copyright (C) 2025"
+  echo "Bloodbat / La Serpiente y la Rosa Producciones."
+  echo "This program comes with ABSOLUTELY NO WARRANTY."
+  echo "This is free software, and you are welcome to redistribute it."
+  echo
+  echo "Script version ${scriptVersion}"
+  echo
+}
+
+function printHelp() {
+  printHeader
+  echo "Usage: $0 [-v <version> | -h]"
+  echo -e "\t-v <version> Try to install specific Rack free version."
+  echo -e "\t-h           Show this help screen."
+  echo
+  exit 2
+}
+
+while getopts ':v:h' opt
 do
   case $opt in
     v) rackVersion=$OPTARG;;
+    h) printHelp;;
     \?) echo "ERROR: Invalid option"
     exit 1;;
   esac
 done
 
-echo "VCV Rack Free installer for Fedora Linux Copyright (C) 2025"
-echo "Bloodbat / La Serpiente y la Rosa Producciones."
-echo "This program comes with ABSOLUTELY NO WARRANTY."
-echo "This is free software, and you are welcome to redistribute it."
-echo
-echo "Script version ${scriptVersion}"
-echo
+printHeader
 echo "Trying to install VCV Rack Free ${rackVersion}..."
 echo
 

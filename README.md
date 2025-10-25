@@ -38,6 +38,12 @@ To use the Manjaro script, download it; put it in your home directory; open a te
 
 Usage for other distros is similar: just pick the right script.
 
+The scripts include a help screen, to display it, run:
+
+```
+<scriptname>.sh -h
+```
+
 ---
 
 ## Requirements
