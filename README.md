@@ -1,60 +1,77 @@
-# Rack Free Installer Scripts
-Scripts to easily install VCV Rack Free and its dependencies for a few different Linux distros.
+# Rack Free Installer Script
+A script to easily install VCV Rack Free and its dependencies for a few different Linux distros.
 
-The scripts check for dependencies; download and install them, if they are not present, and, finally, download and decompresses Rack Free to its default directory: "Rack2Free" in the user's home directory.
+The script checks for dependencies; downloads and install them, if they are not present, and, finally, downloads and decompresses Rack Free to its default directory: "Rack2Free" in the user's home directory.
 
-For example, if the current user is "myuser", Rack will be installed in
+For example, if the current user is "myuser", Rack Free will be installed in
 
 ```
 /home/myuser/Rack2Free
 ```
 
-The scripts do nothing fancy: they will not install graphical Jack connection managers or install and enable Pipewire Jack: those are exercises left to the user.
+The script does nothing fancy: it will not install graphical Jack connection managers or install and enable Pipewire Jack: those are exercises left to the user.
 
-## These scripts install VCV Rack Free version 2.6.3 by default.
+## The script installs VCV Rack Free version 2.6.3 by default.
 
-### These scripts do not and cannot install the paid version of VCV Rack! If you need help installing that version, contact VCV Rack support!
+### The script does not and cannot install the paid version of VCV Rack! If you need help installing that version, contact VCV Rack support!
 
 ---
 
-## Using the scripts
+## Using the script
 
-Get the installer script for your preferred distro, put it in your home directory and run it from the terminal command line.
+Get the installer script; put it in your home directory, and run it from the terminal command line.
 
-| Script name             | Target Distribution | Package Manager |
-| ----------------------- | ------------------- | --------------- |
-| install_rack_manjaro.sh | Manjaro Linux       | pacman          |
-| install_rack_ubuntu.sh  | Ubuntu              | apt             |
-| install_rack_mint.sh    | Linux Mint          | apt             |
-| install_rack_fedora.sh  | Fedora Linux        | dnf             |
+The script will ask you for the distribution you are using interactively; just type the number (or the Quit option to abort) and press the Enter key.
 
-For example:
+The script is written to be compatible with the following distributions; but it may work for others using the same package manager:
 
-To use the Manjaro script, download it; put it in your home directory; open a terminal, and run:
+| Distribution  | Package Manager |
+| ------------- | --------------- |
+| Manjaro Linux | pacman          |
+| Ubuntu        | apt             |
+| Linux Mint    | apt             |
+| Fedora Linux  | dnf             |
 
-```
-./install_rack_manjaro.sh
-```
-
-Usage for other distros is similar: just pick the right script.
-
-The scripts include a help screen, to display it, run:
+Distributions can also be selected using the command line by passing it the -d option followed by the UPPERCASE letter set for a known distribution; for example to install Rack Free in Ubuntu directly, run:
 
 ```
-<scriptname>.sh -h
+install_rack_free.sh -d U
 ```
 
-Installation of JACK can be skipped so that the scripts are more useful to more distributions and to avoid overwriting existing installations, run:
+Known distributions and their set letters are the following:
+
+| Distribution  | Command line option |
+| ------------- | ------------------- |
+| Manjaro Linux | M                   |
+| Ubuntu        | U                   |
+| Linux Mint    | T                   |
+| Fedora Linux  | F                   |
+
+The script includes a help screen; to display it, run:
 
 ```
-<scriptname>.sh -j
+install_rack_free.sh -h
 ```
+
+Installation of JACK can be skipped so that the script is more useful to more distributions and to avoid overwriting existing installations, run:
+
+```
+install_rack_free.sh -j
+```
+
+Specific Rack Free versions can be installed using the -v option; for example to install the old Rack Free 2.5.2 version, run:
+
+```
+install_rack_free.sh -v 2.5.2
+```
+
+Keep in mind command line options are *case sensitive*.
 
 ---
 
 ## Requirements
 
-The scripts require:
+The script requires:
 
 - A reasonably recent version of your preferred distro.
 
@@ -70,13 +87,13 @@ The scripts require:
 
 ## My favorite distro is not listed!
 
-You can try using one of the available scripts that corresponds to the packaging system a particular distro uses, for example, the Ubuntu script might be compatible with Debian; check the table above to find out which package manager each script uses.
+You can try selecting an existing distribution that uses the same packaging system and manager your particular distro uses; for example, selecting Ubuntu might work with Debian; check the table above to find out which package manager the script acknowledges for each distribution.
 
-If none of the scripts work for your chosen distribution, contributions for new scripts are welcome!
+If none of the options work for your chosen distribution, contributions for new distributions are welcome!
 
 ---
 
-## Help! I can't download the scripts!
+## Help! I can't download the script!
 
 You have a several options here.
 
@@ -84,11 +101,11 @@ Three common ones:
 
 - Using your browser
 
-  - Download the .zip or tar.gz file named "Source code" from the "Releases" page in this repository and decompress it. This will net you all the scripts, so just use the appropriate one.
+  - Download the .zip or tar.gz file named "Source code" from the "Releases" page in this repository and decompress it.
 
-  - You can download individual ones directly as well:
+  - You can download the script directly as well using your browser as well:
 
-    - Click on the appropriate script for your distribution.
+    - Click on the script.
 
     - Click "Raw".
 
@@ -99,10 +116,8 @@ Three common ones:
   - Type
 
   ```
-  wget https://raw.githubusercontent.com/Bloodbat/RackInstallerScripts/refs/heads/main/install_rack_<yourdistro>.sh
+  wget https://raw.githubusercontent.com/Bloodbat/RackInstallerScripts/refs/heads/main/install_rack_free.sh
   ```
-
-  - Substitute the \<yourdistro\> part for the distro you are using after consulting the the table above.
 
   - Press "Enter".
 
@@ -114,35 +129,33 @@ Three common ones:
 - Run
 
   ```
-  chmod +x <scriptname>.sh
+  chmod +x install_rack_free.sh
   ```
 
-  Where \<scriptname\> is your selected script.
-
-## The default version of VCV Rack Free installed by the scripts is too old / too new!
+## The default version of VCV Rack Free installed by the script is too old / too new!
 
 The default version is selected using the wisdom of the community in the forum and our personal experience.
 
-Versions passing both tests will be the default whenever the scripts are updated.
+Versions passing both tests will be the default whenever the script is updated.
 
 That said... if you want a different version, just pass it using the "-v" parameter sans the quotes.
 
-For example, to install VCV Rack Free version 2.6.4 using the Linux Mint installer script, type:
+For example, to install VCV Rack Free version 2.6.4, type:
 
 ```
-install_rack_mint.sh -v 2.6.4
+install_rack_free.sh -v 2.6.4
 ```
 
 and press ENTER.
 
-The scripts *do not* check for version correctness before trying to download a VCV Rack Free distribution, so... make sure you type an available version.
+The script *does not* check for version correctness before trying to download a VCV Rack Free distribution, so... make sure you type an available version.
 
-## My distro is too old! The scripts are incompatible!
+## My distro is too old! The script is incompatible!
 
 - Several options:
 
   - You could... update your distro.
 
-  - You can also adjust the script.
+  - You can also adjust the script, it is written to be clear and user friendly.
 
-    If you take this route, make sure you share it with us using a suitable name such as "install_rack_fedora_old.sh" or somesuch.
+    If you take this route, please, make sure you share your changes with us!
