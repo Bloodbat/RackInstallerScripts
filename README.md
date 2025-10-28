@@ -1,7 +1,7 @@
 # Rack Free Installer Script
 A script to easily install VCV Rack Free and its dependencies for a few different Linux distros.
 
-The script checks for dependencies; downloads and install them, if they are not present, and, finally, downloads and decompresses Rack Free to its default directory: "Rack2Free" in the user's home directory.
+The script checks for dependencies; downloads and installs them, if they are not present, and, finally, downloads and decompresses Rack Free to its default directory: "Rack2Free" in the user's home directory.
 
 For example, if the current user is "myuser", Rack Free will be installed in
 
