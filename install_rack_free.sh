@@ -5,6 +5,7 @@ scriptVersion=3.0
 SUDO=''
 originalFolder=$(pwd)
 wantJack=1
+wantRackOnly=0
 
 # Holds the selected distro:
 #  0: no distro... leads to error and exit.
@@ -58,7 +59,7 @@ function printHeader() {
 
 function printHelp() {
   printHeader
-  echo "Usage: $0 [-v <version> -j -d <distro> | -h]"
+  echo "Usage: $0 [-v <version> -j -d <distro> -r | -h]"
   echo -e "\t-v <version> Try to install specific Rack Free version."
   echo -e "\t-j           Skip JACK installation."
   echo -e "\t-d <distro>  Select Linux distribution from the command line."
@@ -68,6 +69,7 @@ function printHelp() {
   echo -e "\t             M Manjaro Linux\tT Linux Mint"
   echo -e "\t             U Ubuntu       \tF Fedora Linux"
   echo
+  echo -e "\t-r           Install or update / downgrade Rack Free only."
   echo -e "\t-h           Show this help screen."
   echo
   echo "Options are Case Sensitive!"
@@ -224,7 +226,7 @@ function installPrereqs() {
 # End functions block.
 
 # <--- Begin actual script --->
-while getopts ':v:hjd:' opt
+while getopts ':v:hjrd:' opt
 do
   case $opt in
     v) rackVersion=$OPTARG;;
@@ -255,6 +257,7 @@ do
        ;;
     h) printHelp;;
     j) wantJack=0;;
+    r) wantRackOnly=1;;
     \?)
       echo "ERROR: Invalid option: \"$OPTARG\"."
       echo
@@ -275,7 +278,9 @@ fi
 echo "Trying to install VCV Rack Free ${rackVersion} in ${distroLabels[distroName]}..."
 echo
 
-installPrereqs
+if [ $wantRackOnly == 0 ]; then
+  installPrereqs
+fi
 
 installRack
 

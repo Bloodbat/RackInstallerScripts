@@ -65,7 +65,19 @@ Specific Rack Free versions can be installed using the -v option; for example to
 install_rack_free.sh -v 2.5.2
 ```
 
-Keep in mind command line options are *case sensitive*.
+If you want to update Rack Free or just want to download and decompress Rack Free ignoring the prerequisites, run:
+
+```
+install_rack_free.sh -r
+```
+
+This option can be used to update or downgrade existing Rack Free installations to a different version; for example to downgrade Rack Free 2.6.3, the default installed by this script, to Rack Free 2.6.0, run:
+
+```
+install_rack_free.sh -r -v 2.6.0
+```
+
+Keep in mind command line options are *case sensitive* and that option order is not relevant.
 
 ---
 
