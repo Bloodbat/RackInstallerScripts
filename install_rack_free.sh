@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 rackVersion=2.6.3
-scriptVersion=3.0
+scriptVersion=3.1
 SUDO=''
 originalFolder=$(pwd)
 wantJack=1
