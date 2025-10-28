@@ -208,9 +208,10 @@ function installPrereqs() {
   echo Installing initial prerequisites...
 
   case $selectedDistro in
+    ## We are not supposed to be here...
     0)
       echo
-      echo "Invalid selection. Exiting now..."
+      echo "Invalid distribution selection. Exiting now..."
       exit 1
       ;;
     1) installManjaroPrereqs;;
