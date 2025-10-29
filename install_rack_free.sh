@@ -25,57 +25,6 @@ checkCommand=''
 installCommand=''
 
 # Begin functions block.
-function printErrorAndExit() {
-  echo
-  echo "Unable to install "$1"."
-  echo
-  echo "Exiting now..."
-  exit 1
-}
-
-function checkAndInstall() {
-  ${checkCommand} "$1" &> /dev/null
-
-  if [ $? != 0 ]; then
-    echo
-    echo "Installing "$1"..."
-    $SUDO ${installCommand} "$1"
-
-    if [ $? != 0 ]; then
-      printErrorAndExit "$1"
-    fi
-  fi
-}
-
-function printHeader() {
-  echo "VCV Rack Free installer script Copyright (C) 2025"
-  echo "Bloodbat / La Serpiente y la Rosa Producciones."
-  echo "This program comes with ABSOLUTELY NO WARRANTY."
-  echo "This is free software, and you are welcome to redistribute it."
-  echo
-  echo "Script version ${scriptVersion}"
-  echo
-}
-
-function printHelp() {
-  printHeader
-  echo "Usage: $0 [-v <version> -j -d <distro> -r | -h]"
-  echo -e "\t-v <version> Try to install specific Rack Free version."
-  echo -e "\t-j           Skip JACK installation."
-  echo -e "\t-d <distro>  Select Linux distribution from the command line."
-  echo
-  # Update these when new distros are added:
-  echo -e "\t             Valid \"distro\" options are:"
-  echo -e "\t             M Manjaro Linux\tT Linux Mint"
-  echo -e "\t             U Ubuntu       \tF Fedora Linux"
-  echo
-  echo -e "\t-r           Install or update / downgrade Rack Free only."
-  echo -e "\t-h           Show this help screen."
-  echo
-  echo "Options are Case Sensitive!"
-  exit 2
-}
-
 function installRack() {
   echo "Getting VCV Rack Free ${rackVersion}..."
   wget https://vcvrack.com/downloads/RackFree-${rackVersion}-lin-x64.zip &> /dev/null
@@ -103,6 +52,46 @@ function installRack() {
 
   echo "Cleaning up..."
   rm RackFree-${rackVersion}-lin-x64.zip
+}
+
+function checkAndInstall() {
+  ${checkCommand} "$1" &> /dev/null
+
+  if [ $? != 0 ]; then
+    echo
+    echo "Installing "$1"..."
+    $SUDO ${installCommand} "$1"
+
+    if [ $? != 0 ]; then
+      printErrorAndExit "$1"
+    fi
+  fi
+}
+
+function installPrereqs() {
+  # We want to install in user's home folder.
+  cd ~
+
+  # Check if we're root.
+  if [ $EUID != 0 ]; then
+    SUDO='sudo'
+  fi
+
+  echo Installing initial prerequisites...
+
+  case $selectedDistro in
+    ## We are not supposed to be here...
+    0)
+      echo
+      echo "Invalid distribution selection. Exiting now..."
+      exit 1
+      ;;
+    1) installManjaroPrereqs;;
+    2) installUbuntuPrereqs;;
+    3) installFedoraPrereqs;;
+    # <--- Add new distros here! --->
+  esac
+  echo
 }
 
 function installManjaroPrereqs() {
@@ -157,6 +146,43 @@ function installFedoraPrereqs() {
   fi
 }
 
+function printHeader() {
+  echo "VCV Rack Free installer script Copyright (C) 2025"
+  echo "Bloodbat / La Serpiente y la Rosa Producciones."
+  echo "This program comes with ABSOLUTELY NO WARRANTY."
+  echo "This is free software, and you are welcome to redistribute it."
+  echo
+  echo "Script version ${scriptVersion}"
+  echo
+}
+
+function printHelp() {
+  printHeader
+  echo "Usage: $0 [-v <version> -j -d <distro> -r | -h]"
+  echo -e "\t-v <version> Try to install specific Rack Free version."
+  echo -e "\t-j           Skip JACK installation."
+  echo -e "\t-d <distro>  Select Linux distribution from the command line."
+  echo
+  # Update these when new distros are added:
+  echo -e "\t             Valid \"distro\" options are:"
+  echo -e "\t             M Manjaro Linux\tT Linux Mint"
+  echo -e "\t             U Ubuntu       \tF Fedora Linux"
+  echo
+  echo -e "\t-r           Install or update / downgrade Rack Free only."
+  echo -e "\t-h           Show this help screen."
+  echo
+  echo "Options are Case Sensitive!"
+  exit 2
+}
+
+function printErrorAndExit() {
+  echo
+  echo "Unable to install "$1"."
+  echo
+  echo "Exiting now..."
+  exit 1
+}
+
 function chooseDistro() {
   PS3='Please select your distribution: '
   distros=("Manjaro Linux" "Linux Mint" "Ubuntu" "Fedora Linux" "Quit")
@@ -196,32 +222,6 @@ function chooseDistro() {
       *) echo "Invalid option $REPLY";;
       esac
   done
-}
-
-function installPrereqs() {
-  # We want to install in user's home folder.
-  cd ~
-
-  # Check if we're root.
-  if [ $EUID != 0 ]; then
-    SUDO='sudo'
-  fi
-
-  echo Installing initial prerequisites...
-
-  case $selectedDistro in
-    ## We are not supposed to be here...
-    0)
-      echo
-      echo "Invalid distribution selection. Exiting now..."
-      exit 1
-      ;;
-    1) installManjaroPrereqs;;
-    2) installUbuntuPrereqs;;
-    3) installFedoraPrereqs;;
-    # <--- Add new distros here! --->
-  esac
-  echo
 }
 # End functions block.
 
