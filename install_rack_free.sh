@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 rackVersion=2.6.3
-scriptVersion=3.1
+scriptVersion=3.2
 SUDO=''
 wantJack=1
 wantRackOnly=0
@@ -183,7 +183,8 @@ function printErrorAndExit() {
 }
 
 function chooseDistro() {
-  PS3='Please select your distribution: '
+  # This prompt needs updating when adding new distributions!
+  PS3='Type the number of your distribution and press ENTER [1-5] '
   distros=("Manjaro Linux" "Linux Mint" "Ubuntu" "Fedora Linux" "Quit")
   select distro in "${distros[@]}"
   do
