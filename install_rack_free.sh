@@ -11,11 +11,11 @@ wantRackOnly=0
 #  1: Manjaro.
 #  2: Linux Mint and Ubuntu.
 #  3: Fedora Linux.
-# <--- Add new distros here! --->
+# TODO: <--- Add new distro numbers here! --->
 selectedDistro=0
 distroName=0
 
-# Distro names for echo: update these as well when adding new distros.
+# TODO: Distro names for echo: update these when adding new distros!
 distroLabels=("Manjaro Linux" "Linux Mint" "Ubuntu" "Fedora Linux")
 
 # These setup the checker and installer commands for different distros;
@@ -79,7 +79,7 @@ function installPrereqs() {
   echo Installing initial prerequisites...
 
   case $selectedDistro in
-    ## We are not supposed to be here...
+    # We are not supposed to be here...
     0)
       echo
       echo "Invalid distribution selection. Exiting now..."
@@ -88,7 +88,7 @@ function installPrereqs() {
     1) installManjaroPrereqs;;
     2) installUbuntuPrereqs;;
     3) installFedoraPrereqs;;
-    # <--- Add new distros here! --->
+    # TODO: <--- Add new distros here! --->
   esac
   echo
 }
@@ -161,9 +161,9 @@ function printHelp() {
   echo -e "\t-v <version> Try to install specific Rack Free version."
   echo -e "\t-j           Skip JACK installation."
   echo -e "\t-d <distro>  Select Linux distribution from the command line."
-  echo
-  # Update these when new distros are added:
+  echo  
   echo -e "\t             Valid \"distro\" options are:"
+  # TODO: Update these when new distros are added!
   echo -e "\t             M Manjaro Linux\tT Linux Mint"
   echo -e "\t             U Ubuntu       \tF Fedora Linux"
   echo
@@ -183,8 +183,9 @@ function printErrorAndExit() {
 }
 
 function chooseDistro() {
-  # This prompt needs updating when adding new distributions!
+  # TODO: This prompt needs updating when adding new distributions!
   PS3='Type the number of your distribution and press ENTER [1-5] '
+  # TODO: Update this array when adding new distributions! Quit should ALWAYS be last!
   distros=("Manjaro Linux" "Linux Mint" "Ubuntu" "Fedora Linux" "Quit")
   select distro in "${distros[@]}"
   do
@@ -231,7 +232,7 @@ do
   case $opt in
     v) rackVersion=$OPTARG;;
     d)
-       # New distros need to be added here.
+       # TODO: Update this logic when new distros are added.
        case $OPTARG in
          M)
            selectedDistro=1
