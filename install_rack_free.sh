@@ -3,7 +3,6 @@
 rackVersion=2.6.3
 scriptVersion=3.1
 SUDO=''
-originalFolder=$(pwd)
 wantJack=1
 wantRackOnly=0
 
@@ -300,7 +299,4 @@ echo "Sanguine Monsters:"
 echo "https://library.vcvrack.com/SanguineMonsters"
 echo
 echo "Bye now!"
-
-# Go back to wherever we started...
-cd ${originalFolder}
 # <--- End actual script --->
