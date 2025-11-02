@@ -24,7 +24,7 @@ The script does nothing fancy: it will not install graphical Jack connection man
 
 Get the installer script; put it in your home directory, and run it from the terminal command line.
 
-The script will ask you for the distribution you are using interactively; just type the number (or the Quit option to abort) and press the Enter key.
+The script will ask you for the distribution you are using interactively; just type the number (or the Quit option to abort) and press the ENTER key.
 
 The script is written to be compatible with the following distributions; but it may work for others using the same package manager:
 
@@ -134,7 +134,7 @@ Three common ones:
   wget https://raw.githubusercontent.com/Bloodbat/RackInstallerScripts/refs/heads/main/install_rack_free.sh
   ```
 
-  - Press "Enter".
+  - Press ENTER.
 
   - Make sure you set the script to be executable after downloading!
 
