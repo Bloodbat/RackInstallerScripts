@@ -1,6 +1,6 @@
 # Rack Free Installer Script
 
-### Script version 3.1
+### Script version 3.2
 
 A script to easily install VCV Rack Free and its dependencies for a few different Linux distros.
 
