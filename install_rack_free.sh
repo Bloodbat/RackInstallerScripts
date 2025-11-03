@@ -57,7 +57,7 @@ function installRack() {
   rm RackFree-${rackVersion}-lin-x64.zip
 }
 
-function checkPackage() {
+function checkForPackage() {
   echo
   echo "Checking if $1 is installed..."
   ${checkCommand} "$1" &> /dev/null
@@ -68,7 +68,7 @@ function checkPackage() {
 }
 
 function checkAndInstall() {
-  checkPackage "$1"
+  checkForPackage "$1"
 
   if [ $lastCheck != 0 ]; then
     echo
@@ -137,7 +137,7 @@ function installArchPrereqs() {
 
   if [ $wantJack != 0 ]; then
     # Don't try to clobber pipewire-jack...
-    checkPackage pipewire-jack
+    checkForPackage pipewire-jack
     if [ $lastCheck != 0 ]; then
       checkAndInstall jack2
     fi
@@ -164,7 +164,7 @@ function installDebianPrereqs() {
 
   if [ $wantJack != 0 ]; then
     # Don't overwrite jack in certain Ubuntu versions.
-    checkPackage libjack-jackd2-0
+    checkForPackage libjack-jackd2-0
     if [ $lastCheck != 0 ]; then
       checkAndInstall libjack0
     fi
