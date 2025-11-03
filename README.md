@@ -184,7 +184,7 @@ Yes! Just pass it using the `-u` option.
 For example, to update Rack Free 2.6.3 to Rack Free 2.6.5, type:
 
 ```
-install_rack_free.sh -u 2.6.4
+install_rack_free.sh -u 2.6.5
 ```
 
 ## My distro is too old! The script is incompatible!
