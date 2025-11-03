@@ -1,22 +1,25 @@
 #!/usr/bin/env bash
 
 rackVersion=2.6.3
-scriptVersion=3.2
+scriptVersion=4.0
 SUDO=''
 wantJack=1
 wantRackOnly=0
+lastCheck=0
+wantVersion=0
 
 # Holds the selected distro:
-#  0: no distro... leads to error and exit.
-#  1: Manjaro.
-#  2: Linux Mint and Ubuntu.
-#  3: Fedora Linux.
+# 0: no distro... leads to error and exit.
+# 1: updating only... THIS MUST BE KEPT HERE!
+# 2: Arch based (Manjaro Linux, Arch Linux, EndeavourOS).
+# 3: Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS).
+# 4: Fedora Linux based.
 # TODO: <--- Add new distro numbers here! --->
 selectedDistro=0
 distroName=0
 
 # TODO: Distro names for echo: update these when adding new distros!
-distroLabels=("Manjaro Linux" "Linux Mint" "Ubuntu" "Fedora Linux")
+distroLabels=("Arch Linux based distribution" "Debian based distribution" "Fedora Linux based distribution")
 
 # These setup the checker and installer commands for different distros;
 # they are filled when a distro is selected.
@@ -53,10 +56,20 @@ function installRack() {
   rm RackFree-${rackVersion}-lin-x64.zip
 }
 
-function checkAndInstall() {
+function checkPackage() {
+  echo
+  echo "Checking if $1 is installed..."
   ${checkCommand} "$1" &> /dev/null
+  lastCheck=$?
+  if [ $lastCheck == 0 ]; then
+    echo ""$1" is already installed."
+  fi
+}
 
-  if [ $? != 0 ]; then
+function checkAndInstall() {
+  checkPackage "$1"
+
+  if [ $lastCheck != 0 ]; then
     echo
     echo "Installing "$1"..."
     $SUDO ${installCommand} "$1"
@@ -85,15 +98,16 @@ function installPrereqs() {
       echo "Invalid distribution selection. Exiting now..."
       exit 1
       ;;
-    1) installManjaroPrereqs;;
-    2) installUbuntuPrereqs;;
-    3) installFedoraPrereqs;;
+    1) ;;
+    2) installArchPrereqs;;
+    3) installDebianPrereqs;;
+    4) installFedoraPrereqs;;
     # TODO: <--- Add new distros here! --->
   esac
   echo
 }
 
-function installManjaroPrereqs() {
+function installArchPrereqs() {
   checkCommand="pacman -Q"
   installCommand="pacman -S -q --noconfirm"
 
@@ -104,11 +118,15 @@ function installManjaroPrereqs() {
   checkAndInstall zenity
 
   if [ $wantJack != 0 ]; then
-    checkAndInstall jack2
+    # Don't try to clobber pipewire-jack...
+    checkPackage pipewire-jack
+    if [ $lastCheck != 0 ]; then
+      checkAndInstall jack2
+    fi
   fi
 }
 
-function installUbuntuPrereqs() {
+function installDebianPrereqs() {
   checkCommand="dpkg -s"
   installCommand="apt -y install"
 
@@ -118,10 +136,10 @@ function installUbuntuPrereqs() {
 
   checkAndInstall zenity
 
-  # Don't overwrite jack in certain Ubuntu versions.
-  ${checkCommand} libjack-jackd2-0 &> /dev/null
-  if [ $? != 0 ]; then
-    if [ $wantJack != 0 ]; then
+  if [ $wantJack != 0 ]; then
+    # Don't overwrite jack in certain Ubuntu versions.
+    checkPackage libjack-jackd2-0
+    if [ $lastCheck != 0 ]; then
       checkAndInstall libjack0
     fi
   fi
@@ -157,15 +175,17 @@ function printHeader() {
 
 function printHelp() {
   printHeader
-  echo "Usage: $0 [-v <version> -j -d <distro> -r | -h]"
+  echo "Usage: $0 [(-v <version> | -u <version>) -j -d <distro> -r | -h]"
   echo -e "\t-v <version> Try to install specific Rack Free version."
   echo -e "\t-j           Skip JACK installation."
+  echo -e "\t-u <version> Update or downgrade Rack Free to the specified version."
   echo -e "\t-d <distro>  Select Linux distribution from the command line."
-  echo  
+  echo
   echo -e "\t             Valid \"distro\" options are:"
   # TODO: Update these when new distros are added!
-  echo -e "\t             M Manjaro Linux\tT Linux Mint"
-  echo -e "\t             U Ubuntu       \tF Fedora Linux"
+  echo -e "\t             A Arch Linux based (Manjaro Linux, Arch Linux, EndeavourOS)"
+  echo -e "\t             D Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS)"
+  echo -e "\t             F Fedora Linux based"
   echo
   echo -e "\t-r           Install or update / downgrade Rack Free only."
   echo -e "\t-h           Show this help screen."
@@ -176,7 +196,7 @@ function printHelp() {
 
 function printErrorAndExit() {
   echo
-  echo "Unable to install "$1"."
+  echo "ERROR: Unable to install "$1"."
   echo
   echo "Exiting now..."
   exit 1
@@ -184,37 +204,31 @@ function printErrorAndExit() {
 
 function chooseDistro() {
   # TODO: This prompt needs updating when adding new distributions!
-  PS3='Type the number of your distribution and press ENTER [1-5] '
+  PS3='Type the number of your distribution and press ENTER [1-4] '
   # TODO: Update this array when adding new distributions! Quit should ALWAYS be last!
-  distros=("Manjaro Linux" "Linux Mint" "Ubuntu" "Fedora Linux" "Quit")
+  distros=("Arch Linux based (Manjaro Linux, Arch Linux, EndeavourOS)" "Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS)" "Fedora Linux based (Fedora Linux)" "Quit")
   select distro in "${distros[@]}"
   do
     case $REPLY in
       1)
-        selectedDistro=1
+        selectedDistro=2
         distroName=0
         echo
         break
         ;;
       2)
-        selectedDistro=2
+        selectedDistro=3
         distroName=1
         echo
         break
         ;;
       3)
-        selectedDistro=2
+        selectedDistro=4
         distroName=2
         echo
         break
         ;;
       4)
-        selectedDistro=3
-        distroName=3
-        echo
-        break
-        ;;
-      5)
         echo
         echo "Aborted by user. Bye!"
         exit 0
@@ -227,27 +241,26 @@ function chooseDistro() {
 # End functions block.
 
 # <--- Begin actual script --->
-while getopts ':v:hjrd:' opt
+while getopts ':v:hjrd:u:' opt
 do
   case $opt in
-    v) rackVersion=$OPTARG;;
+    v)
+     rackVersion=$OPTARG
+     wantVersion=1
+     ;;
     d)
        # TODO: Update this logic when new distros are added.
        case $OPTARG in
-         M)
-           selectedDistro=1
+         A)
+           selectedDistro=2
            distroName=0
            ;;
-         U)
-           selectedDistro=2
+         D)
+           selectedDistro=3
            distroName=2
            ;;
-         T)
-           selectedDistro=2
-           distroName=1
-         ;;
          F)
-           selectedDistro=3
+           selectedDistro=4
            distroName=3
            ;;
          *)
@@ -259,12 +272,25 @@ do
     h) printHelp;;
     j) wantJack=0;;
     r) wantRackOnly=1;;
+    u)
+      selectedDistro=1
+      rackVersion=$OPTARG
+      wantRackOnly=1
+      ;;
     \?)
       echo "ERROR: Invalid option: \"$OPTARG\"."
       echo
       echo "Type $0 -h for help."
       echo
       echo "Exiting now."
+      exit 1
+      ;;
+    :)
+      echo "ERROR: Option -$OPTARG requires an argument."
+      echo
+      echo "Type $0 -h for help."
+      echo
+      echo "Exiting now..."
       exit 1
       ;;
   esac
@@ -276,8 +302,17 @@ if [ $selectedDistro == 0 ]; then
   chooseDistro
 fi
 
-echo "Trying to install VCV Rack Free ${rackVersion} in ${distroLabels[distroName]}..."
-echo
+if [ $selectedDistro != 1 ]; then
+  echo "Trying to install VCV Rack Free ${rackVersion} for ${distroLabels[distroName]}..."
+  echo
+else
+  if [ $wantVersion == 1 ]; then
+    echo "ERROR: -u and -v are mutually exclusive!"
+    echo "Exiting now..."
+    exit 1
+  fi
+  echo "Trying to update VCV Rack free to ${rackVersion}..."
+fi
 
 if [ $wantRackOnly == 0 ]; then
   installPrereqs
