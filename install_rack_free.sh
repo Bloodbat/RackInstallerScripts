@@ -82,7 +82,7 @@ function checkAndInstall() {
 }
 
 function installPrereqs() {
-  # We want to install in user's home folder.
+  # We want to install in the user's home folder.
   cd ~
 
   # Check if we're root.
