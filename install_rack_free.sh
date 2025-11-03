@@ -354,14 +354,21 @@ echo
 echo "Done! Enjoy your Rack Free!"
 echo
 echo "You can run VCV Rack Free ${rackVersion} from the command line by typing:"
-echo "'cd ${HOME}/Rack2Free' Enter"
-echo "'./Rack' Enter"
+echo
+echo "'cd $HOME/Rack2Free' and pressing ENTER."
+echo
+echo "Followed by"
+echo
+echo "'./Rack' and pressing ENTER."
 echo
 echo "Now that VCV Rack Free is installed; perhaps you would enjoy my plugins!"
+echo
 echo "They are free as in freedom and as in beer!"
+echo
 echo "You can get them from the VCV Rack Library:"
 echo "Sanguine Mutants:"
 echo "https://library.vcvrack.com/SanguineMutants"
+echo
 echo "Sanguine Monsters:"
 echo "https://library.vcvrack.com/SanguineMonsters"
 echo
