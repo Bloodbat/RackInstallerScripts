@@ -25,6 +25,7 @@ distroLabels=("Arch Linux based distribution" "Debian based distribution" "Fedor
 # they are filled when a distro is selected.
 checkCommand=''
 installCommand=''
+packageManager=''
 
 # Begin functions block.
 function installRack() {
@@ -107,9 +108,26 @@ function installPrereqs() {
   echo
 }
 
+function checkPackageManager() {
+  echo
+  echo "Checking for package manager $packageManager..."
+  command -v $packageManager &> /dev/null
+  if [ $? != 0 ]; then
+    echo
+    echo "ERROR: package manager $packageManager not found."
+    echo "Exiting now..."
+    exit 1
+  fi
+  echo "Package manager found."
+}
+
 function installArchPrereqs() {
-  checkCommand="pacman -Q"
-  installCommand="pacman -S -q --noconfirm"
+  packageManager="pacman"
+
+  checkPackageManager
+
+  checkCommand="$packageManager -Q"
+  installCommand="$packageManager -S -q --noconfirm"
 
   checkAndInstall wget
 
@@ -127,6 +145,14 @@ function installArchPrereqs() {
 }
 
 function installDebianPrereqs() {
+  packageManager="dpkg"
+
+  checkPackageManager
+
+  packageManager="apt"
+
+  checkPackageManager
+
   checkCommand="dpkg -s"
   installCommand="apt -y install"
 
@@ -146,11 +172,15 @@ function installDebianPrereqs() {
 }
 
 function installFedoraPrereqs() {
-  checkCommand="dnf list installed"
-  installCommand="dnf install"
+ packageManager="dnf"
+
+  checkPackageManager
+
+  checkCommand="$packageManager list installed"
+  installCommand="$packageManager install"
 
   # Ensure we can list the packages: this system is not at all smart.
-  $SUDO dnf list --extras &> /dev/null
+  $SUDO $packageManager list --extras &> /dev/null
 
   checkAndInstall wget2
 
