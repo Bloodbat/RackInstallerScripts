@@ -20,7 +20,7 @@ selectedDistro=0
 distroName=0
 
 # TODO: Distro names for echo: update these when adding new distros!
-distroLabels=("Arch Linux based distribution" "Debian based distribution" "Fedora Linux based distribution", "Suse based distribution")
+distroLabels=("Arch Linux" "Debian" "Fedora Linux", "Suse")
 
 # These setup the checker and installer commands for different distros;
 # they are filled when a distro is selected.
@@ -365,7 +365,7 @@ if [ $selectedDistro == 0 ]; then
 fi
 
 if [ $selectedDistro != 1 ]; then
-  echo "Trying to install VCV Rack Free ${rackVersion} for ${distroLabels[distroName]}..."
+  echo "Trying to install VCV Rack Free ${rackVersion} for ${distroLabels[distroName]} based distribution..."
   echo
 else
   if [ $wantVersion == 1 ]; then
