@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 rackVersion=2.6.3
-scriptVersion=4.0
+scriptVersion=4.1
 SUDO=''
 wantJack=1
 wantRackOnly=0
@@ -14,12 +14,13 @@ wantVersion=0
 # 2: Arch based (Manjaro Linux, Arch Linux, EndeavourOS).
 # 3: Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS).
 # 4: Fedora Linux based.
+# 5: Suse based (OpenSUSE Leap, OpenSUSE Tumbleweed).
 # TODO: <--- Add new distro numbers here! --->
 selectedDistro=0
 distroName=0
 
 # TODO: Distro names for echo: update these when adding new distros!
-distroLabels=("Arch Linux based distribution" "Debian based distribution" "Fedora Linux based distribution")
+distroLabels=("Arch Linux based distribution" "Debian based distribution" "Fedora Linux based distribution", "Suse based distribution")
 
 # These setup the checker and installer commands for different distros;
 # they are filled when a distro is selected.
@@ -103,6 +104,7 @@ function installPrereqs() {
     2) installArchPrereqs;;
     3) installDebianPrereqs;;
     4) installFedoraPrereqs;;
+    5) installSusePrereqs;;
     # TODO: <--- Add new distros here! --->
   esac
   echo
@@ -193,6 +195,25 @@ function installFedoraPrereqs() {
   fi
 }
 
+function installSusePrereqs() {
+  packageManager="zypper"
+
+  checkPackageManager
+
+  checkCommand="$packageManager search -i"
+  installCommand="$packageManager --non-interactive install"
+
+  checkAndInstall wget
+
+  checkAndInstall unzip
+
+  checkAndInstall zenity
+
+  if [ $wantJack != 0 ]; then
+    checkAndInstall pipewire-jack
+  fi
+}
+
 function printHeader() {
   echo "VCV Rack Free installer script Copyright (C) 2025"
   echo "Bloodbat / La Serpiente y la Rosa Producciones."
@@ -216,6 +237,7 @@ function printHelp() {
   echo -e "\t             A Arch Linux based (Manjaro Linux, Arch Linux, EndeavourOS)"
   echo -e "\t             D Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS)"
   echo -e "\t             F Fedora Linux based"
+  echo -e "\t             S Suse based (OpenSUSE Leap, OpenSuse Tumbleweed)"
   echo
   echo -e "\t-r           Install or update / downgrade Rack Free only."
   echo -e "\t-h           Show this help screen."
@@ -234,9 +256,9 @@ function printErrorAndExit() {
 
 function chooseDistro() {
   # TODO: This prompt needs updating when adding new distributions!
-  PS3='Type the number of your distribution and press ENTER [1-4] '
+  PS3='Type the number of your distribution and press ENTER [1-5] '
   # TODO: Update this array when adding new distributions! Quit should ALWAYS be last!
-  distros=("Arch Linux based (Manjaro Linux, Arch Linux, EndeavourOS)" "Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS)" "Fedora Linux based (Fedora Linux)" "Quit")
+  distros=("Arch Linux based (Manjaro Linux, Arch Linux, EndeavourOS)" "Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS)" "Fedora Linux based (Fedora Linux)" "Suse based (OpenSUSE Leap, OpenSuse Tumbleweed)" "Quit")
   select distro in "${distros[@]}"
   do
     case $REPLY in
@@ -259,6 +281,12 @@ function chooseDistro() {
         break
         ;;
       4)
+        selectedDistro=5
+        distroName=3
+        echo
+        break
+        ;;
+      5)
         echo
         echo "Aborted by user. Bye!"
         exit 0
@@ -292,6 +320,10 @@ do
          F)
            selectedDistro=4
            distroName=3
+           ;;
+         S)
+           selectedDistro=5
+           distroName=4
            ;;
          *)
            echo "ERROR: Invalid distribution: \"$OPTARG\"."

@@ -1,6 +1,6 @@
 # Rack Free Installer Script
 
-### Script version 4.0
+### Script version 4.1
 
 A script to easily install VCV Rack Free and its dependencies for a few different Linux distros.
 
@@ -28,16 +28,18 @@ The script will ask you for the distribution you are using interactively; just t
 
 The script is written for and has been tested with the following distributions:
 
-| Distribution  | Package Manager |
-| ------------- | --------------- |
-| Manjaro Linux | pacman          |
-| Arch Linux    | pacman          |
-| EndeavourOS   | pacman          |
-| Linux Mint    | apt             |
-| Ubuntu        | apt             |
-| Debian        | apt             |
-| Pop!_OS       | apt             |
-| Fedora Linux  | dnf             |
+| Distribution        | Package Manager |
+| ------------------- | --------------- |
+| Manjaro Linux       | pacman          |
+| Arch Linux          | pacman          |
+| EndeavourOS         | pacman          |
+| Linux Mint          | apt             |
+| Ubuntu              | apt             |
+| Debian              | apt             |
+| Pop!_OS             | apt             |
+| Fedora Linux        | dnf             |
+| OpenSUSE Leap       | zypper          |
+| OpenSUSE Tumbleweed | zypper          |
 
 The script may work for other distributions using the same package manager.
 
@@ -49,16 +51,18 @@ install_rack_free.sh -d D
 
 Known distributions and their set letters are the following:
 
-| Distribution      | Base         | Command line option |
-| ----------------- | ------------ | ------------------- |
-| **Manjaro Linux** | Arch Linux   | A                   |
-| **Arch Linux**    | Arch Linux   | A                   |
-| **EndeavourOS**   | Arch Linux   | A                   |
-| **Linux Mint**    | Debian       | D                   |
-| **Ubuntu**        | Debian       | D                   |
-| **Debian**        | Debian       | D                   |
-| **Pop!_OS**       | Debian       | D                   |
-| **Fedora Linux**  | Fedora Linux | F                   |
+| Distribution            | Base         | Command line option |
+| ----------------------- | ------------ | ------------------- |
+| **Manjaro Linux**       | Arch Linux   | A                   |
+| **Arch Linux**          | Arch Linux   | A                   |
+| **EndeavourOS**         | Arch Linux   | A                   |
+| **Linux Mint**          | Debian       | D                   |
+| **Ubuntu**              | Debian       | D                   |
+| **Debian**              | Debian       | D                   |
+| **Pop!_OS**             | Debian       | D                   |
+| **Fedora Linux**        | Fedora Linux | F                   |
+| **OpenSUSE Leap**       | Suse         | S                   |
+| **OpenSUSE Tumbleweed** | Suse         | S                   |
 
 The script includes a help screen; to display it, run:
 
