@@ -174,7 +174,7 @@ function installDebianPrereqs() {
 }
 
 function installFedoraPrereqs() {
- packageManager="dnf"
+  packageManager="dnf"
 
   checkPackageManager
 
