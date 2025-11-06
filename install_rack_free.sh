@@ -12,7 +12,7 @@ wantVersion=0
 # 0: no distro... leads to error and exit.
 # 1: updating only... THIS MUST BE KEPT HERE!
 # 2: Arch based (Manjaro Linux, Arch Linux, EndeavourOS).
-# 3: Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS).
+# 3: Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS, Devuan).
 # 4: Fedora Linux based.
 # 5: Suse based (OpenSUSE Leap, OpenSUSE Tumbleweed).
 # TODO: <--- Add new distro numbers here! --->
@@ -235,7 +235,7 @@ function printHelp() {
   echo -e "\t             Valid \"distro\" options are:"
   # TODO: Update these when new distros are added!
   echo -e "\t             A Arch Linux based (Manjaro Linux, Arch Linux, EndeavourOS)"
-  echo -e "\t             D Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS)"
+  echo -e "\t             D Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS, Devuan)"
   echo -e "\t             F Fedora Linux based"
   echo -e "\t             S Suse based (OpenSUSE Leap, OpenSuse Tumbleweed)"
   echo
@@ -258,7 +258,7 @@ function chooseDistro() {
   # TODO: This prompt needs updating when adding new distributions!
   PS3='Type the number of your distribution and press ENTER [1-5] '
   # TODO: Update this array when adding new distributions! Quit should ALWAYS be last!
-  distros=("Arch Linux based (Manjaro Linux, Arch Linux, EndeavourOS)" "Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS)" "Fedora Linux based (Fedora Linux)" "Suse based (OpenSUSE Leap, OpenSuse Tumbleweed)" "Quit")
+  distros=("Arch Linux based (Manjaro Linux, Arch Linux, EndeavourOS)" "Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS, Devuan)" "Fedora Linux based (Fedora Linux)" "Suse based (OpenSUSE Leap, OpenSuse Tumbleweed)" "Quit")
   select distro in "${distros[@]}"
   do
     case $REPLY in

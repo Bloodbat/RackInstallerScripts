@@ -37,6 +37,7 @@ The script is written for and has been tested with the following distributions:
 | Ubuntu              | apt             |
 | Debian              | apt             |
 | Pop!_OS             | apt             |
+| Devuan              | apt             |
 | Fedora Linux        | dnf             |
 | OpenSUSE Leap       | zypper          |
 | OpenSUSE Tumbleweed | zypper          |
@@ -60,6 +61,7 @@ Known distributions and their set letters are the following:
 | **Ubuntu**              | Debian       | D                   |
 | **Debian**              | Debian       | D                   |
 | **Pop!_OS**             | Debian       | D                   |
+| **Devuan**              | Debian       | D                   |
 | **Fedora Linux**        | Fedora Linux | F                   |
 | **OpenSUSE Leap**       | Suse         | S                   |
 | **OpenSUSE Tumbleweed** | Suse         | S                   |
