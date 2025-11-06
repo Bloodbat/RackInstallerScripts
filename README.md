@@ -41,6 +41,7 @@ The script is written for and has been tested with the following distributions:
 | Fedora Linux        | dnf             |
 | OpenSUSE Leap       | zypper          |
 | OpenSUSE Tumbleweed | zypper          |
+| OpenMandriva Rome   | dnf             |
 
 The script may work for other distributions using the same package manager.
 
@@ -65,6 +66,7 @@ Known distributions and their set letters are the following:
 | **Fedora Linux**        | Fedora Linux | F                   |
 | **OpenSUSE Leap**       | Suse         | S                   |
 | **OpenSUSE Tumbleweed** | Suse         | S                   |
+| **OpenMandriva Rome**   | OpenMandriva | O                   |
 
 The script includes a help screen; to display it, run:
 
