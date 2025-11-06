@@ -315,15 +315,15 @@ do
            ;;
          D)
            selectedDistro=3
-           distroName=2
+           distroName=1
            ;;
          F)
            selectedDistro=4
-           distroName=3
+           distroName=2
            ;;
          S)
            selectedDistro=5
-           distroName=4
+           distroName=3
            ;;
          *)
            echo "ERROR: Invalid distribution: \"$OPTARG\"."
