@@ -179,7 +179,7 @@ function installFedoraPrereqs() {
   checkPackageManager
 
   checkCommand="$packageManager list installed"
-  installCommand="$packageManager install"
+  installCommand="$packageManager -y install"
 
   # Ensure we can list the packages: this system is not at all smart.
   $SUDO $packageManager list --extras &> /dev/null
