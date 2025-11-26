@@ -101,7 +101,7 @@ function installPrereqs() {
       echo "Invalid distribution selection. Exiting now..."
       exit 1
       ;;
-    1) ;;
+    1) ;; # This is for updating! Do not remove!
     2) installArchPrereqs;;
     3) installDebianPrereqs;;
     4) installFedoraPrereqs;;
