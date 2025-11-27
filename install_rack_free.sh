@@ -171,7 +171,7 @@ function installDebianPrereqs() {
   checkAndInstall zenity
 
   if [ $wantJack != 0 ]; then
-    # Don't overwrite jack in certain Ubuntu versions.
+    # Don't overwrite jack on certain Ubuntu versions.
     checkForPackage libjack-jackd2-0
     if [ $lastCheck != 0 ]; then
       checkAndInstall libjack0
