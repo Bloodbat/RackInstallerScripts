@@ -15,7 +15,7 @@ wantVersion=0
 # 3: Debian based (Linux Mint, Ubuntu, Debian, Pop!_OS, Devuan).
 # 4: Fedora Linux based.
 # 5: Suse based (OpenSUSE Leap, OpenSUSE Tumbleweed).
-# 6: OpenMandriva based (OpenMandriva Rome) 
+# 6: OpenMandriva based (OpenMandriva Rome)
 # TODO: <--- Add new distro numbers here! --->
 selectedDistro=0
 distroName=0
@@ -73,6 +73,11 @@ function checkAndInstall() {
   checkForPackage "$1"
 
   if [ $lastCheck != 0 ]; then
+    install "$1"
+  fi
+}
+
+function install() {
     echo
     echo "Installing "$1"..."
     $SUDO ${installCommand} "$1"
@@ -80,7 +85,6 @@ function checkAndInstall() {
     if [ $? != 0 ]; then
       printErrorAndExit "$1"
     fi
-  fi
 }
 
 function installPrereqs() {
